@@ -5,13 +5,15 @@ import android.text.TextUtils
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.Volley
+import william.dagger2practice.App
 
 /**
  * Created by fangru.wu on 2018/02/08.
  */
-class BackendVolley : Application() {
-    override fun onCreate() {
-        super.onCreate()
+class BackendVolley() {
+    val application: App
+
+    fun onCreate() {
         instance = this
     }
 

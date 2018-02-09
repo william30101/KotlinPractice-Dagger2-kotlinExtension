@@ -1,12 +1,32 @@
 package william.dagger2practice.di
 
 import dagger.Module
+import dagger.Provides
+import william.dagger2practice.Volley.APIController
+import william.dagger2practice.Volley.BackendVolley
+import william.dagger2practice.Volley.ServiceVolley
+import javax.inject.Singleton
 
 /**
  * Created by fangru.wu on 2018/02/09.
  */
 @Module
 internal object DataModule {
+
+    @Singleton
+    @Provides
+    @JvmStatic
+    fun provideServiceVolley() = ServiceVolley()
+
+    @Singleton
+    @Provides
+    @JvmStatic
+    fun provideApiController(serviceVolley: ServiceVolley) = APIController(serviceVolley)
+
+    @Singleton
+    @Provides
+    @JvmStatic
+    fun provideApiController(backendVolley: BackendVolley) = BackendVolley
 
 //    @Singleton
 //    @Provides

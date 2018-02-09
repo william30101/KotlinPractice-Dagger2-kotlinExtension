@@ -1,6 +1,7 @@
 package william.dagger2practice
 
 import dagger.android.support.DaggerApplication
+import william.dagger2practice.Volley.BackendVolley
 import william.dagger2practice.di.DaggerAppComponent
 import william.dagger2practice.di.applyAutoInjector
 import william.dagger2practice.ui.UserViewModel
@@ -21,8 +22,9 @@ class App : DaggerApplication() {
     override fun onCreate() {
         super.onCreate()
         applyAutoInjector()
+        BackendVolley.onCreate(this)
         appLifecycleCallbacks.onCreate(this)
-        userViewModel.loginUserId.value = "satorufujiwara"
+        userViewModel.loginUserId.value = "williamwu"
     }
 
     override fun onTerminate() {

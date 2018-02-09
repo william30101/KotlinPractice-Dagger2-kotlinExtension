@@ -3,7 +3,6 @@ package william.dagger2practice.ui
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
-
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -12,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import william.dagger2practice.R
+import william.dagger2practice.Volley.APIController
 import william.dagger2practice.databinding.MainFragmentBinding
 import william.dagger2practice.databinding.MainRepoItemBinding
 import william.dagger2practice.di.Injectable
@@ -25,6 +25,11 @@ class MainFragment : Fragment(), Injectable {
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     @Inject lateinit var userViewModel: UserViewModel
+
+    @Inject
+    lateinit var apiController: APIController
+
+
     private lateinit var viewModel: MainViewModel
     private lateinit var binding: MainFragmentBinding
     private val adapter = MainAdapter()
@@ -40,6 +45,7 @@ class MainFragment : Fragment(), Injectable {
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(activity)
 
+
         viewModel.repos.observe(this) {
             it ?: return@observe
             adapter.run {
@@ -51,6 +57,8 @@ class MainFragment : Fragment(), Injectable {
         userViewModel.loginUserId.observe(this) {
             viewModel.ownerId.value = it
         }
+
+
     }
 
     companion object {
