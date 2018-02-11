@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
         val service = ServiceVolley()
         val apiController = APIController(service)
-        val path = "https://www.google.com"
+        val path = "http://data.taipei/opendata/datalist/apiAccess?scope=datasetMetadataSearch&q=id:7996eec3-e88a-4abc-b602-42c81932a9f6"
         request_btn.setOnClickListener { view ->
 
 

@@ -1,26 +1,20 @@
 package william.dagger2practice.Volley
 
-import android.app.Application
+import android.content.Context
 import android.text.TextUtils
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.Volley
-import william.dagger2practice.App
 
 /**
  * Created by fangru.wu on 2018/02/08.
  */
-class BackendVolley() {
-    val application: App
-
-    fun onCreate() {
-        instance = this
-    }
+class BackendVolley{
 
     val requestQueue: RequestQueue? = null
         get() {
             if (field == null) {
-                return Volley.newRequestQueue(applicationContext)
+                return Volley.newRequestQueue(context)
             }
             return field
         }
@@ -41,9 +35,19 @@ class BackendVolley() {
         }
     }
 
+
     companion object {
+        private lateinit var context: Context
+
         private val TAG = BackendVolley::class.java.simpleName
         @get:Synchronized var instance: BackendVolley? = null
-            private set
+        private set
+
+
+        fun initialize(context: Context) {
+            this.context = context.applicationContext
+            instance = BackendVolley()
+        }
     }
+
 }

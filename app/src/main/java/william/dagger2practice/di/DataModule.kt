@@ -26,7 +26,7 @@ internal object DataModule {
     @Singleton
     @Provides
     @JvmStatic
-    fun provideApiController(backendVolley: BackendVolley) = BackendVolley
+    fun provideBackendVolley(backendVolley: BackendVolley) = BackendVolley.instance
 
 //    @Singleton
 //    @Provides
