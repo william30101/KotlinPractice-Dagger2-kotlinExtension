@@ -5,7 +5,6 @@ import android.arch.lifecycle.ViewModel
 import android.util.Log
 import kotlinx.coroutines.experimental.async
 import william.dagger2practice.Volley.APIController
-import william.dagger2practice.Volley.ServiceVolley
 import javax.inject.Inject
 
 /**
@@ -18,8 +17,6 @@ class MainViewModel @Inject constructor(private val apiController: APIController
 
     init {
         repos.value = listOf("a","b","c")
-        val service = ServiceVolley()
-        val apiController = APIController(service)
         val path = "http://data.taipei/opendata/datalist/apiAccess?scope=datasetMetadataSearch&q=id:7996eec3-e88a-4abc-b602-42c81932a9f6"
         async {
 

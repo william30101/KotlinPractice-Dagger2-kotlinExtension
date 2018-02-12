@@ -3,7 +3,6 @@ package william.dagger2practice.di
 import dagger.Module
 import dagger.Provides
 import william.dagger2practice.Volley.APIController
-import william.dagger2practice.Volley.BackendVolley
 import william.dagger2practice.Volley.ServiceVolley
 import javax.inject.Singleton
 
@@ -22,11 +21,6 @@ internal object DataModule {
     @Provides
     @JvmStatic
     fun provideApiController(serviceVolley: ServiceVolley) = APIController(serviceVolley)
-
-    @Singleton
-    @Provides
-    @JvmStatic
-    fun provideBackendVolley(backendVolley: BackendVolley) = BackendVolley.instance
 
 //    @Singleton
 //    @Provides

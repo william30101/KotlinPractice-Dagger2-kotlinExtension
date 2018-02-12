@@ -35,18 +35,15 @@ class BackendVolley{
         }
     }
 
-
     companion object {
-        private lateinit var context: Context
-
         private val TAG = BackendVolley::class.java.simpleName
         @get:Synchronized var instance: BackendVolley? = null
         private set
+        lateinit var context: Context
 
-
-        fun initialize(context: Context) {
-            this.context = context.applicationContext
+        fun initial(context:Context) {
             instance = BackendVolley()
+            this.context = context
         }
     }
 

@@ -22,7 +22,7 @@ class App : DaggerApplication() {
     override fun onCreate() {
         super.onCreate()
         applyAutoInjector()
-        BackendVolley.initialize(this)
+        BackendVolley.initial(this)
         appLifecycleCallbacks.onCreate(this)
         userViewModel.loginUserId.value = "williamwu"
     }
