@@ -68,4 +68,6 @@ dependencies {
     kapt "android.arch.lifecycle:compiler:$arch_version"
 
     compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.21"
+
+    compile 'com.github.salomonbrys.kotson:kotson:2.5.0'
 }

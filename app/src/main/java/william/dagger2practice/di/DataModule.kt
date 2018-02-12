@@ -1,5 +1,6 @@
 package william.dagger2practice.di
 
+import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import william.dagger2practice.Volley.APIController
@@ -21,6 +22,11 @@ internal object DataModule {
     @Provides
     @JvmStatic
     fun provideApiController(serviceVolley: ServiceVolley) = APIController(serviceVolley)
+
+    @Singleton
+    @Provides
+    @JvmStatic
+    fun provideGson() = Gson()
 
 //    @Singleton
 //    @Provides

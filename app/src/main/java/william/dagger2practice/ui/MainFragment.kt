@@ -10,7 +10,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.github.salomonbrys.kotson.jsonObject
+import com.google.gson.JsonObject
 import william.dagger2practice.R
+import william.dagger2practice.data.Bus
 import william.dagger2practice.databinding.MainFragmentBinding
 import william.dagger2practice.databinding.MainRepoItemBinding
 import william.dagger2practice.di.Injectable
@@ -41,7 +44,17 @@ class MainFragment : Fragment(), Injectable {
         binding.recyclerView.layoutManager = LinearLayoutManager(activity)
 
 
-        viewModel.repos.observe(this) {
+//        viewModel.repos.observe(this) {
+//            it ?: return@observe
+//            adapter.run {
+//                items.clear()
+//                items.addAll(it)
+//                notifyDataSetChanged()
+//            }
+//        }
+
+
+        viewModel.buses.observe(this) {
             it ?: return@observe
             adapter.run {
                 items.clear()
@@ -49,9 +62,14 @@ class MainFragment : Fragment(), Injectable {
                 notifyDataSetChanged()
             }
         }
+
         userViewModel.loginUserId.observe(this) {
             viewModel.ownerId.value = it
         }
+
+        val obj: JsonObject = jsonObject(
+                "test" to "william"
+        )
 
 
     }
@@ -62,7 +80,7 @@ class MainFragment : Fragment(), Injectable {
 }
 
 class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
-    val items = ArrayList<String>()
+    val items = ArrayList<Bus>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainAdapter.ViewHolder {
         return ViewHolder(DataBindingUtil.inflate<MainRepoItemBinding>(
@@ -70,7 +88,7 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: MainAdapter.ViewHolder, position: Int) {
-        holder.binding.repo = items[position]
+        holder.binding.buses = items.get(position)
     }
 
     override fun getItemCount() = items.size
